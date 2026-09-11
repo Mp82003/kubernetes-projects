@@ -4,6 +4,8 @@ kind : Pod
 metadata: 
   name: student-fronted
   namespace: student-management
+  labels:
+    app: frontend
 
 spec:
   containers:
