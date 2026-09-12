@@ -1,25 +1,45 @@
+
 apiVersion: apps/v1
 kind: Deployment
 
-
-metadata: 
+metadata:
   name: student-frontend
   namespace: student-management
 
-spec: 
+spec:
   replicas: 3
 
   selector:
-   matchLabels:
-     app: frontend
-
+    matchLabels:
+      app: frontend
 
   template:
     metadata:
       labels:
-        app: frontend  
+        app: frontend
 
     spec:
       containers:
         - name: nginx
-          image: nginx:latest 
+          image: nginx:latest
+
+          env:
+            - name: APP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: student-config
+                  key: APP_NAME
+
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: student-secret
+                  key: DB_USERNAME
+
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: student-secret
+                  key: DB_PASSWORD
+
+            
