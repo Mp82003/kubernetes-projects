@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: DaemonSet
+
+metadata:
+  name: node-monitor
+  namespace: student-management
+
+spec:
+  selector:
+    matchLabels:
+      app: node-monitor
+
+  template:
+    metadata:
+      labels:
+        app: node-monitor
+
+    spec:
+      containers:
+        - name: node-monitor
+          image: nginx:latest
+
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "32Mi"
+            limits:
+              cpu: "100m"
+              memory: "64Mi"
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
