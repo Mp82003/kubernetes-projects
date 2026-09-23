@@ -1,0 +1,12 @@
+{
+  "name": "nodejs-api",
+  "version": "1.0.0",
+  "description": "Simple Node.js REST API for Helm deployment",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

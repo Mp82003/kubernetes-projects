@@ -1,0 +1,6 @@
+apiVersion: v2
+name: nodejs-api-helm
+description: A custom Helm chart for deploying a Node.js REST API
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
