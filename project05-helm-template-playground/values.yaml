@@ -1,0 +1,27 @@
+replicaCount: 3
+
+image:
+  repository: nginx
+  tag: "1.27"
+  pullPolicy: IfNotPresent
+
+service:
+  enabled: true
+  type: ClusterIP
+  port: 80
+
+app:
+  name: helm-playground
+  environment: dev
+
+config:
+  enabled: true
+  data:
+    APP_NAME: "Helm Playground"
+    APP_ENV: "development"
+    APP_VERSION: "1.0"
+
+extraLabels:
+  team: devops
+  project: helm-playground
+  owner: platform
