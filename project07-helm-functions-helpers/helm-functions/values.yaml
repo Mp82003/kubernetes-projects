@@ -1,0 +1,25 @@
+replicaCount: 2
+
+image:
+  repository: nginx
+  tag: "1.27"
+
+appName: helm-functions
+environment: production
+databaseHost: postgres.default.svc.cluster.local
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 64Mi
+
+annotations:
+  team: devops
+  project: helm-functions

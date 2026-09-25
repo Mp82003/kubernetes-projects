@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: {{ .Values.appName }}
+
+spec:
+  replicas: {{ default 1 .Values.replicaCount }}
+
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+
+  template:
+    metadata:
+      labels:
+        {{- include "helm-functions.labels" . | nindent 8 }}
+
+    spec:
+      containers:
+        - name: nginx
+
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+
+          env:
+            - name: APP_ENV
+              value: {{ .Values.environment | quote }}
+
+            - name: DATABASE_HOST
+              value: {{ required "databaseHost is required" .Values.databaseHost | quote }}
+
+          ports:
+            - containerPort: 80
+
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
