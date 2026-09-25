@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-info
+data:
+  app-name: {{ .Values.appName | quote }}
+  environment: {{ .Values.environment | quote }}
+  owner: {{.Values.owner | quote }}
+
+  release-name: {{ .Release.Name | quote }}
+  release-namespace: {{ .Release.Namespace | quote }}
+  release-revision: {{ .Release.Revision | quote }}
+
+  chart-name: {{ .Chart.Name | quote }}
+  chart-version: {{ .Chart.Version | quote }}
+  app-version: {{ .Chart.AppVersion | quote }}
+
+  kube-version: {{ .Capabilities.KubeVersion.Version | quote }}
+  kube-major: {{ .Capabilities.KubeVersion.Major | quote }}
+  kube-minor: {{ .Capabilities.KubeVersion.Minor | quote }}
