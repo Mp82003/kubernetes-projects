@@ -1,0 +1,24 @@
+replicaCount: 2
+
+config:
+  appName: "Node.js Production App - Staging"
+  environment: "staging"
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 4
+  targetCPUUtilizationPercentage: 70
+ingress:
+  enabled: true
+  className: nginx
+  host: nodejs-staging.local
+

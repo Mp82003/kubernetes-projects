@@ -1,0 +1,12 @@
+{
+  "name": "nodejs-production-app",
+  "version": "1.0.0",
+  "description": "Production-ready Node.js application for Helm deployment",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

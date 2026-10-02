@@ -1,0 +1,25 @@
+replicaCount: 3
+
+config:
+  appName: "Node.js Production App - Production"
+  environment: "production"
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 256Mi
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 70
+
+ingress:
+  enabled: true
+  className: nginx
+  host: nodejs-prod.local
+
